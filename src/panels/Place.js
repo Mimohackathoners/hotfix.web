@@ -26,6 +26,10 @@ const Place = ({ item, order, onIncrementPosition, onDecrementPosition, area }) 
     return accounting.formatNumber(result, 0, ' ');
   }, [ order, item ]);
 
+  function handleMakeOrderClick(e) {
+    if (price <= 0) e.preventDefault();
+  }
+
   return (
     <div className="Place">
       <header className="Place__header">
@@ -101,7 +105,8 @@ const Place = ({ item, order, onIncrementPosition, onDecrementPosition, area }) 
         )))}
       </ul>
       <footer className="Place__footer">
-        <Link to={`/basket/${area.id}/${item.id}`} className={`Place__order${price <= 0 ? " not-active" : ""}`}>
+        <Link to={`/basket/${area.id}/${item.id}`} className={`Place__order${price <= 0 ? " not-active" : ""}`}
+        onClick={handleMakeOrderClick}>
           Оформить заказ ({price})
         </Link>
       </footer>
