@@ -9,9 +9,9 @@ import './place.css';
 
 
 const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
-  const [ faster, setFaster ] = useState(localStorage.faster !== null ? localStorage.faster === "true" : true);
-  const [ time, setTime ] = useState(localStorage.time !== null ? localStorage.time : '');
-  const [ selfService, setSelfService ] = useState(localStorage.selfservice !== null ? localStorage.selfservice === "true" : false);
+  const [ faster, setFaster ] = useState(localStorage.faster != null ? localStorage.faster === "true" : true);
+  const [ time, setTime ] = useState(localStorage.time != null ? localStorage.time : '');
+  const [ selfService, setSelfService ] = useState(localStorage.selfservice != null ? localStorage.selfservice === "true" : false);
   const area = foodAreas.filter(area => area.id === areaId)[0];
   const item = area.items.filter(item => item.id === itemId)[0];
 
@@ -33,12 +33,6 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
 
     return [ accounting.formatNumber(result, 0, ' '), products ];
   }, [ order, item ]);
-
-  // if (localStorage['faster'] !== null) {
-  //   setFaster(localStorage.faster)
-  //   setTime(localStorage.time)
-  //   setSelfService(localStorage.seflservice)
-  // }
 
   function changeProductClick() {
     localStorage.setItem('faster', faster)
